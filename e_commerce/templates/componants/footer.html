@@ -1,0 +1,55 @@
+{% load static %}
+
+<div class="row">
+  <div class="col-md-12">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill="#e9e2d5"
+        fill-opacity="1"
+        d="M0,224L120,240C240,256,480,288,720,293.3C960,299,1200,277,1320,266.7L1440,256L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
+      ></path>
+    </svg>
+  </div>
+</div>
+<section id="footer" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h5>About Us</h5>
+        <p>
+          We are an online platform offering a wide variety of products with
+          exceptional quality and excellent customer service. Our goal is to
+          provide the best shopping experience for all our customers.
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'products' %}">Home</a></li>
+          <li>
+            <a href="{% url 'cateogry' %}">Categories</a>
+          </li>
+          <li>
+            <a href="{% url 'create_product' %}">Create Product</a>
+          </li>
+          <li>
+            <a href="{% url 'products_list' %}">Products List</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h5>Follow Us</h5>
+        <div class="social-links">
+          <a href="#" class="me-3"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="me-3"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr class="my-4" />
+    <div class="text-center">
+      <p>&copy; 2025 Online Website. All Rights Reserved.</p>
+    </div>
+  </div>
+</section>

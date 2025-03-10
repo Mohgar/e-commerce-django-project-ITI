@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h1 class="text-center mb-4">Products in Category {{ category.name }}</h1>
+  <hr />
+</div>
+<div class="container">
+  <div class="d-flex flex-wrap gap-3">
+    {% for product in products %}
+    <div class="card" style="width: 18rem">
+      <img
+        src="{{ product.thumbnail }}"
+        class="card-img-top"
+        alt="{{ product.name }}"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p
+          class="card-text"
+          style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap"
+        >
+          {{ product.description }}
+        </p>
+        <a href="{% url 'single' product.id %}" class="btn btn-danger"
+          >Details</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

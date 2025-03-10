@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+<section class="container">
+  <section class="d-flex flex-wrap gap-3">
+    {% for cateogry in cateogrys %}
+    <button type="button" class="btn btn-danger">
+      <a href="{% url 'category_products' cateogry.id %}">{{cateogry.name}}</a>
+    </button>
+    {% endfor %}
+  </section>
+</section>
+{% endblock content %}

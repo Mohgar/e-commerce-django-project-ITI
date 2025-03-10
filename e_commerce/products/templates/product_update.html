@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="text-center mb-4">Update Product</h1>
+  <hr />
+
+  <div class="col-md-8 mx-auto">
+    {% if form.errors %}
+    <div class="alert alert-danger">
+      <strong>Error!</strong> Please correct the errors below. {{ form.errors }}
+    </div>
+    {% endif %}
+
+    <form
+      method="POST"
+      class="bg-light p-4 rounded shadow-sm"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="id_title" class="form-label">Product Title</label>
+        <input
+          type="text"
+          name="title"
+          class="form-control"
+          id="id_title"
+          value="{{ form.title.value|default_if_none:'' }}"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="id_description" class="form-label">Description</label>
+        <textarea name="description" class="form-control" id="id_description">
+{{ form.description.value|default_if_none:'' }}</textarea
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="id_price" class="form-label">Price</label>
+        <input
+          type="number"
+          name="price"
+          class="form-control"
+          id="id_price"
+          min="0"
+          value="{{ form.price.value|default_if_none:'' }}"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="id_category" class="form-label">Category</label>
+        <select name="category" class="form-select form-control" id="id_category">
+          {% for category in form.category.field.queryset %}
+          <option
+            value="{{ category.id }}"
+            {% comment %} {% if form.category.value == category.id %}selected{% endif %} {% endcomment %}
+          >
+            {{ category.name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="id_thumbnail" class="form-label">Product Image</label>
+        <input
+          type="url"
+          name="thumbnail"
+          class="form-control"
+          id="id_thumbnail"
+        />
+        {% if form.thumbnail.value %}
+        <small class="text-muted">Current: {{ form.thumbnail.value }}</small>
+        {% endif %}
+      </div>
+
+      <div class="mb-3">
+        <label for="id_rating" class="form-label">Rating</label>
+        <input
+          type="number"
+          name="rating"
+          class="form-control"
+          id="id_rating"
+          value="{{ form.rating.value|default_if_none:'' }}"
+          min="0"
+          max="4"
+          step="0.1"
+        />
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary">Update Product</button>
+      </div>
+    </form>
+
+    <br />
+    <div class="text-center">
+      <a href="{% url 'products' %}" class="btn btn-secondary">Back To Product List</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

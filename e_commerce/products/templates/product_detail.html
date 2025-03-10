@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <section class="d-flex flex-wrap justify-content-around gap-3">
+    <div class="card mb-3" style="max-width: 100%">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img
+            src="{{ product.thumbnail}}"
+            class="img-fluid rounded-start"
+            alt="{{ product.title }}"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <a
+              href="{% url 'product_update' product.id %}"
+              class="btn btn-danger"
+              >Edit</a
+            >
+            {% if request.user.is_superuser %}
+            <a
+              href="{% url 'product_delete' product.id %}"
+              class="btn btn-danger"
+              >Delete</a
+            >
+            {% endif %}
+            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-danger"
+              >Add to Cart</a
+            >
+            <a href="{% url 'cart_detail' %}" class="btn btn-danger"
+              >View Cart</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
+</div>

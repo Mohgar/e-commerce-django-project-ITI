@@ -1,0 +1,99 @@
+{% load static %}
+<section>
+  <nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa-solid fa-bars-staggered"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a
+              class="nav-link fw-bolder mx-5"
+              aria-current="page"
+              href="{% url 'products' %}"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-bolder" href="{% url 'cateogry' %}"
+              >Categories</a
+            >
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center">
+          {% if not request.user.is_authenticated %}
+          <a class="nav-link me-3 fw-bold" href="{% url 'login' %}">Login</a>
+          {% endif %} {% if request.user.is_authenticated %}
+          <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link nav-link me-3">
+              Logout
+            </button>
+          </form>
+
+          <button type="submit" class="btn btn-link nav-link me-3">
+            Hi {{ request.user.username }}
+          </button>
+          {% endif %}
+
+          <form
+            class="d-flex"
+            role="search"
+            method="get"
+            action="{% url 'products_list' %}"
+          >
+            <input
+              class="form-control"
+              type="search"
+              placeholder="Search..."
+              aria-label="Search"
+              name="query"
+            />
+            <button class="btn btn-danger fw-bold" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+</section>
+
+<section id="banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="promo-title">Online Website</h2>
+        <p>
+          An online website is a digital platform accessible via the internet,
+          offering services, information, or interaction with users. It can
+          serve various purposes, such as e-commerce, social media, education,
+          or entertainment. Websites are typically built using web technologies
+          and are designed to be user-friendly, responsive, and secure.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %}
+<div class="row">
+  <div class="col-md-12">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" height="200">
+      <path
+        fill="#e9e2d5"
+        fill-opacity="1"
+        d="M0,96L120,85.3C240,75,480,53,720,42.7C960,32,1200,32,1320,32L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"
+      ></path>
+    </svg>
+  </div>
+</div>
+{% endcomment %}

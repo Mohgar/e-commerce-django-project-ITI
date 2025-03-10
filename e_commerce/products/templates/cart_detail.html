@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block content %}
+<section class="container">
+  <h2 class="mb-4">Your Cart</h2>
+  {% if cart.items.all %}
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead class="table-secondary">
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart.items.all %}
+        <tr>
+          <td>{{ item.product.title }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.product.price }}</td>
+          <td>${{ item.get_total_price }}</td>
+          <td>
+            <a
+              href="{% url 'remove_from_cart' item.id %}"
+              class="btn btn-danger"
+              >Remove</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="text-end"><strong>Total</strong></td>
+          <td><strong>${{ cart.get_total_price }}</strong></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-danger" role="alert">Your cart is empty.</div>
+  {% endif %}
+  <a href="{% url 'products' %}" class="btn btn-secondary">Continue Shopping</a>
+</section>
+{% endblock %}
